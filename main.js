@@ -4,25 +4,29 @@ var Z = 90,
 	A = 65,
 	st_original = "st_original",
 	st_all = "st_all";
-	
-$(function(){
-	
+
+$(function () {
+    rangy.init();
+    $(document.body).append("<iframe id='ifm' style='width:1000px;height:1000px;'/>");
+    // document.getElementById("ifm").contentWindow.document.designMode = 'On';
+    $("#ifm")[0].contentWindow.document.designMode = 'On';
 });
 
 $(document).keypress(function (e) {
     if (e.shiftKey && e.which == A) {
         var blogContent = getWords(),
 			all = getLocalStorage(st_all);
-
+        alert(blogContent);
         all += blogContent;
         window.localStorage.setItem(st_all, all);
+        $($("#ifm")[0].contentWindow.document.body).html(all);
     } else if (e.shiftKey && e.which == Z) {
 
     }
 }) 
  
- function getWords(){  
-    return "<p class='ext_content'>" + window.getSelection() + "</p>";
+ function getWords(){
+     return "<p class='ext_content'>" + rangy.getSelection().toHtml() + "</p>";
 }  
 
 function getLocalStorage(key){

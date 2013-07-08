@@ -23,6 +23,7 @@
 		{
 			"matches": [ "*://*/*" ],
 			"js":["jquery-1.9.1.min.js",
+				"rangy-core.js",
 				"main.js"],
 			"css":["main.css"],
 		"all_frames": true
