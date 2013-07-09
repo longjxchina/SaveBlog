@@ -1,0 +1,127 @@
+﻿.hide
+{
+    display:none!important;
+}
+
+#chromeExtContainer
+{
+    position:fixed;
+	top:0px;
+	width:100%;
+	z-index:998;
+}
+
+.chrome_ext_msg_container
+{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:999;
+}
+
+#chromeExtMsg
+{
+    margin:45px auto 0;
+    border:solid 1px green;
+    width:200px;
+    box-shadow:green 0 0 15px;
+    border-radius:5px;
+    padding:20px 50px;
+    text-align:center;    
+    font-size:24px;
+    display:none;
+    background:white;
+    font-family:微软雅黑;
+}
+
+.st_all_data{	
+	-webkit-transform: translate3d(0px, 0px, 0px); 
+	visibility: visible; 
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	border-top-width:5px;
+	border-top-style:solid;
+	background: -webkit-linear-gradient(top, rgba(239,239,239,0.98) 0%,rgba(253,253,253,0.98) 100%);
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+	opacity:0.99999999;
+	width:960px;
+	max-height:720px;	
+	margin:0 auto;
+	z-index:1000;
+}
+
+.st_all_data textarea{
+    display:block;
+	width:920px;
+	height:614px;
+	padding:20px;
+	border:0;	
+}
+
+.st_all_data #chromeExtPreviewFrame
+{   
+    max-height:654px;
+    width:100%;
+    height:500px;
+    border:0;
+}
+
+.st_all_data .header{
+	height:30px;
+	line-height:30px;
+	background:black;
+	opacity:0.5;
+	color:white;
+	font-size:16px;
+	font-weight:bold;
+	padding-left:15px;
+}
+
+.st_all_data  .buttons{
+	text-align:center;	
+	opacity:1;
+	background:white;	
+	margin-bottom:5px;
+}
+
+.st_all_data .buttons input[type='button'], .chrome_ext_slider input[type='button']{
+	background-image:-webkit-linear-gradient(#FAFAFA, #ECECEC);
+	border:solid 1px #ECECEC;
+	padding:8px 25px;
+	border-radius:3px;
+	color:black;
+	font-weight:bold;	
+	cursor:pointer;
+	margin-left:20px;	
+}
+
+
+.st_all_data .buttons input.chrome_ext_redo, .chrome_ext_slider input.chrome_ext_redo{
+    color:Red;
+}
+
+.st_all_data .buttons input.chrome_ext_save_prev, .chrome_ext_slider input.chrome_ext_save_prev{
+    color:Blue;
+}
+
+.st_all_data .buttons input.copy, .chrome_ext_slider input.copy{
+    color:Green;
+}
+
+/* 侧边 */
+.chrome_ext_slider{
+    position:fixed;
+    right:2px;
+    top:15%;
+    box-shadow:green 0 0 15px;
+    padding:15px 8px;
+    width:50px;
+    background:white;
+}
+
+.chrome_ext_slider input[type='button']
+{
+    margin-left:0;
+    padding:8px 10px;
+}
+
+
