@@ -15,7 +15,7 @@
 
         // 设置全局储存
         GlobalStorage.prototype.set = function (operate, key, value) {
-            if (!key || !value) {
+            if (!key) {
                 return;
             }
 
@@ -41,6 +41,12 @@
             var operate = "remove_item";
 
             chrome.extension.sendRequest({ "operate": operate, "key": key }, function (data) {
+                callback(data);
+            });
+        }
+
+        GlobalStorage.prototype.copy = function (key, callback) {
+            chrome.extension.sendRequest({ "operate": "copy_data", "key": key }, function (data) {
                 callback(data);
             });
         }

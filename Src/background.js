@@ -33,6 +33,13 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
                 window.localStorage.removeItem(request.key);
                 break;
             }
+        case "copy_data":
+            {
+                var data = window.localStorage.getItem(request.key);
+
+                window.Clipboard.copy(data);
+                sendResponse();
+            }
         default:
             break;
     }
@@ -43,17 +50,17 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
 
   Clipboard = {
     _createTextArea: function() {
-      /*var textArea;
+      var textArea;
       textArea = document.createElement("textarea");
       textArea.style.position = "absolute";
       textArea.style.left = "-100%";
-      return textArea;*/
+      return textArea;
 
-      var textArea;
+     /* var textArea;
       textArea = document.createElement("iframe");
       textArea.style.position = "absolute";
       textArea.style.left = "-100%";
-      return textArea;
+      return textArea;*/
     },
     copy: function(data) {
       var textArea;

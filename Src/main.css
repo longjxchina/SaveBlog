@@ -8,7 +8,7 @@
     position:fixed;
 	top:0px;
 	width:100%;
-	z-index:998;
+	z-index:997;
 }
 
 .chrome_ext_msg_container
@@ -16,7 +16,7 @@
     position:fixed;
     top:0;
     width:100%;
-    z-index:999;
+    z-index:998;
 }
 
 #chromeExtMsg
@@ -61,7 +61,7 @@
 {   
     max-height:654px;
     width:100%;
-    height:500px;
+    height:495px;
     border:0;
 }
 
@@ -74,6 +74,15 @@
 	font-size:16px;
 	font-weight:bold;
 	padding-left:15px;
+}
+
+.st_all_data .chrome_ext_option
+{
+    height:30px;
+	line-height:30px;
+    float:right;
+    margin-right:5px;
+    font-size:15px;
 }
 
 .st_all_data  .buttons{
@@ -91,7 +100,7 @@
 	color:black;
 	font-weight:bold;	
 	cursor:pointer;
-	margin-left:20px;	
+	margin-left:20px;
 }
 
 
@@ -116,12 +125,20 @@
     padding:15px 8px;
     width:50px;
     background:white;
+    z-index:999;
+}
+
+.chrome_ext_slider #chromeExtCount
+{
+    margin:0 0 8px;
+    text-align:center;
 }
 
 .chrome_ext_slider input[type='button']
 {
     margin-left:0;
     padding:8px 10px;
+    margin:3px 0;
 }
 
 
