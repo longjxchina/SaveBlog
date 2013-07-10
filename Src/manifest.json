@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
-	"name": "收集博客",
+	"name": "收集博客_开发",
 	"version": "1.0",
 	"description": "收集博客",
-	"background": { "scripts": ["background.js"] },
+	"background": { "scripts": ["Scripts/background.js"] },
 	"browser_action": {
 		"default_icon": "icon48.png",
 		"default_title":"收集博客"
@@ -16,10 +16,10 @@
 	"content_scripts": [
 		{
 			"matches": [ "*://*/*" ],
-			"js":["jquery-1.9.1.min.js",				
-                "GlobalStorage.js",
-                "rangy-core.js",
-				"main.js"],
+			"js":["Scripts/jquery-1.9.1.min.js",				
+                "Scripts/GlobalStorage.js",
+                "Scripts/rangy-core.js",
+				"Scripts/main.js"],
 			"css":["main.css"],
 		"all_frames": false
 		}
