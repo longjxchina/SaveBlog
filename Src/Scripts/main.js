@@ -10,6 +10,7 @@ var Z = 90,
     rangy.init();
     $(document.body).append("<div class='chrome_ext_msg_container'><div id='chromeExtMsg'></div></div>");
 
+    // 是否启用侧边栏
     globalStorage.getData(STORAGE_ENABLE, function (data) {
         if (data.value != "0") {
             $(document.body).append("<div class='chrome_ext_slider' id='chromeExtSlider'><div id='chromeExtCount'></div><input type='button' value='撤消' class='chrome_ext_save_prev'/><input type='button' value='复制' class='copy'/><input type='button' value='清除' class='chrome_ext_redo'/></div>");
@@ -39,14 +40,19 @@ var Z = 90,
             });
         }
     });
+
+    addImgTag();
 })();
 
+function addImgTag(){
+    $("img").after("<div class='chrome_ext_add_icon'><img src='icon48.png' style='width:20px;height:40px;'/></div>");
+}
+
+// 绑定快捷键(Shift + A)缓存选择区域
 $(document).keypress(function (e) {
     if (e.shiftKey && e.which == A) {
         saveSelection();
-    } else if (e.shiftKey && e.which == Z) {
-        
-    }
+    } 
 })
 
 function saveSelection(text) {
