@@ -4,7 +4,8 @@ var Z = 90,
 	A = 65,
 	STORAGE_KEY = "blog_data",
     STORAGE_COUNT = "blog_count",
-    STORAGE_ENABLE = "enable";
+    STORAGE_ENABLE = "enable",
+    curHoverImg;
 
 (function () {
     rangy.init();
@@ -20,18 +21,11 @@ var Z = 90,
             };
 
             document.getElementById("chromeExtSlider").ondrop = function (event) {
-                var data;
-                if (event.dataTransfer.getData("url")) {
-                    var url = event.dataTransfer.getData("url");
-                    data = wrapText("<img src='" + url + "'/>");
-                }
-                else {
-                    data = getWords();
-                }
+                var data = getWords();
 
                 saveSelection(data);
                 event.preventDefault();
-            };
+            };            
 
             globalStorage.getData(STORAGE_COUNT, function (data) {
                 var count = !data.value ? 0 : parseInt(data.value);
@@ -45,7 +39,35 @@ var Z = 90,
 })();
 
 function addImgTag(){
-    $("img").after("<div class='chrome_ext_add_icon'><img src='icon48.png' style='width:20px;height:40px;'/></div>");
+    $("img").hover(function () {
+        var imgSelf = this;
+        var offset = $(imgSelf).offset();
+
+        $(".chrome_ext_add_icon").remove();
+        $(document.body).append("<div class='chrome_ext_add_icon'><img src='" + chrome.extension.getURL("icon48.png") + "' style='width:25px;height:25px;' title='收集图片'/></div>");
+
+        var left = offset.left + $(imgSelf).width() - $(".chrome_ext_add_icon img").width();
+        var top = offset.top - $(".chrome_ext_add_icon img").height() + 5;
+
+        if ($(imgSelf).width() > $(".chrome_ext_add_icon").width()
+            && $(imgSelf).height() > $(".chrome_ext_add_icon").height()) {
+            top = offset.top;
+        }
+
+        $(".chrome_ext_add_icon").fadeIn().css({ "left": left, "top": top }).hover(function () {
+            $(this).show();
+        }, function () {
+            $(this).fadeOut();
+        });
+
+        $(".chrome_ext_add_icon img").click(function () {
+            var html = "<img src='" + $(imgSelf).attr("src") + "' width='" + $(imgSelf).width() + "' height='" + $(imgSelf).height() + "'/>";
+            saveSelection(wrapText(html));
+            return false;
+        });
+    }, function () {
+        $(".chrome_ext_add_icon").hide();
+    });
 }
 
 // 绑定快捷键(Shift + A)缓存选择区域

@@ -147,4 +147,21 @@
     margin:3px 0 0;
 }
 
+/* 图片浮动小图标 */
+.chrome_ext_add_icon{
+    position:absolute;
+    display:none;
+    padding:0!important;
+    margin:0!important;
+    border:0!important;
+    background:transparent;    
+    z-index:999;
+}
+
+.chrome_ext_add_icon img{
+    padding:0!important;
+    margin:0!important;
+    border:0!important;
+}
+
 

@@ -21,7 +21,7 @@
                 "Scripts/rangy-core.js",
 				"Scripts/main.js"],
 			"css":["main.css"],
-		"all_frames": false
+		"all_frames": true
 		}
 	],
 	"permissions": [
@@ -36,5 +36,8 @@
 	"optional_permissions":[
 		"clipboardRead",
 		"clipboardWrite"
-	]
+	],
+    "web_accessible_resources": [
+        "icon48.png"
+    ]
 }
