@@ -8,7 +8,7 @@
     position:fixed;
 	top:0px;
 	width:100%;
-	z-index:999;
+	z-index:99999;
 }
 
 .chrome_ext_msg_container
@@ -16,7 +16,7 @@
     position:fixed;
     top:0;
     width:100%;
-    z-index:999;
+    z-index:100000;
 }
 
 #chromeExtMsg
@@ -32,6 +32,7 @@
     display:none;
     background:white;
     font-family:微软雅黑;
+    color:Black!important;
 }
 
 .st_all_data{	
@@ -94,32 +95,38 @@
 }
 
 .st_all_data .buttons input[type='button'], .chrome_ext_slider input[type='button']{
-	background-image:-webkit-linear-gradient(#FAFAFA, #ECECEC);
-	border:solid 1px #ECECEC;
-	padding:8px 25px;
-	border-radius:3px;
-	color:black;
-	font-weight:bold;	
-	cursor:pointer;
-	margin-left:20px;
-	float:none;
-	height:34px;
+    background:none!important;
+	background-image:-webkit-linear-gradient(#FAFAFA, #ECECEC)!important;
+	border:solid 1px #ECECEC!important;
+	padding:8px 25px!important;
+	border-radius:3px!important;
+	color:black!important;
+	font-weight:bold!important;	
+	cursor:pointer!important;
+	margin-left:20px!important;
+	float:none!important;
+	height:34px!important;
+	font-size:12px!important;
+	opacity:1!important;
+	line-height:100%!important;
+	width:80px!important;
+	display:inline!important;
 }
 
 .st_all_data .buttons input[type='button']:hover, .chrome_ext_slider input[type='button']:hover{
-	background-image:-webkit-linear-gradient(#ECECEC, #FAFAFA);
+	background-image:-webkit-linear-gradient(#ECECEC, #FAFAFA)!important;
 }
 
 .st_all_data .buttons input.chrome_ext_redo, .chrome_ext_slider input.chrome_ext_redo{
-    color:Red;
+    color:Red!important;
 }
 
 .st_all_data .buttons input.chrome_ext_save_prev, .chrome_ext_slider input.chrome_ext_save_prev{
-    color:Blue;
+    color:Blue!important;
 }
 
 .st_all_data .buttons input.copy, .chrome_ext_slider input.copy{
-    color:Green;
+    color:Green!important;
 }
 
 /* 侧边 */
@@ -131,20 +138,21 @@
     padding:15px 8px;
     width:50px;
     background:white;
-    z-index:999;
+    z-index:100000;
 }
 
 .chrome_ext_slider #chromeExtCount
 {
-    margin:0 0 8px;
-    text-align:center;
+    margin:0 0 8px!important;
+    text-align:center!important;
+    color:Black!important;
 }
 
 .chrome_ext_slider input[type='button']
 {
-    margin-left:0;
-    padding:8px 10px;
-    margin:3px 0 0;
+    padding:8px 10px!important;
+    margin:3px 0 0!important;
+    width:50px!important;
 }
 
 /* 图片浮动小图标 */

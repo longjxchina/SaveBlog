@@ -38,13 +38,13 @@ var Z = 90,
     addImgTag();
 })();
 
-function addImgTag(){
-    $("img").hover(function () {
+function addImgTag() {
+    $(document).on("mouseover", "img:not(#chromeExtCollectImg)", function (e) {
         var imgSelf = this;
         var offset = $(imgSelf).offset();
 
         $(".chrome_ext_add_icon").remove();
-        $(document.body).append("<div class='chrome_ext_add_icon'><img src='" + chrome.extension.getURL("icon48.png") + "' style='width:25px;height:25px;' title='收集图片'/></div>");
+        $(document.body).append("<div class='chrome_ext_add_icon'><img id='chromeExtCollectImg' src='" + chrome.extension.getURL("icon48.png") + "' style='width:25px;height:25px;' title='收集图片'/></div>");
 
         var left = offset.left + $(imgSelf).width() - $(".chrome_ext_add_icon img").width();
         var top = offset.top - $(".chrome_ext_add_icon img").height() + 5;
@@ -61,11 +61,13 @@ function addImgTag(){
         });
 
         $(".chrome_ext_add_icon img").click(function () {
-            var html = "<img src='" + $(imgSelf).attr("src") + "' width='" + $(imgSelf).width() + "' height='" + $(imgSelf).height() + "'/>";
+            var html = "<img src='" + $(imgSelf)[0].src + "' width='" + $(imgSelf).width() + "' height='" + $(imgSelf).height() + "'/>";
             saveSelection(wrapText(html));
             return false;
         });
-    }, function () {
+    });
+
+    $(document).on("mouseout", "img:not(#chromeExtCollectImg)", function (e) {
         $(".chrome_ext_add_icon").hide();
     });
 }

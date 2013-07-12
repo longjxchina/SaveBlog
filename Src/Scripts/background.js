@@ -1,5 +1,10 @@
 ﻿function loadData() {
-	chrome.tabs.executeScript(null,{code:"showSavedData()"});
+    try {
+        chrome.tabs.executeScript(null, { code: "showSavedData()" });
+    }
+    catch (e) {
+        chrome.tabs.executeScript(null, { code: "alert('“收集博客”未能及时加载，请刷新网页重试！')" });
+    }
 }
 
 chrome.browserAction.onClicked.addListener(loadData);
