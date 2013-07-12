@@ -76,6 +76,7 @@
 	font-size:16px;
 	font-weight:bold;
 	padding:0 0 0 15px;
+	min-width:auto;
 }
 
 .st_all_data .chrome_ext_option
