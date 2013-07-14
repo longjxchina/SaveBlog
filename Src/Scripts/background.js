@@ -43,7 +43,7 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
                 var data = window.localStorage.getItem(request.key);
 
                 window.Clipboard.copy(data);
-                sendResponse();
+                sendResponse({ "value": data });
             }
         default:
             break;

@@ -66,7 +66,7 @@
     border:0;
 }
 
-.st_all_data .header{
+.st_all_data .chro_ext_header{
 	width:auto;
 	height:30px;
 	line-height:30px;
@@ -126,7 +126,7 @@
     color:Blue!important;
 }
 
-.st_all_data .buttons input.copy, .chrome_ext_slider input.copy{
+.st_all_data .buttons input.chro_ext_copy, .chrome_ext_slider input.chro_ext_copy{
     color:Green!important;
 }
 

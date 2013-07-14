@@ -5,11 +5,17 @@
 </head>
 <body>
 <p>
-    z
-    <p>abcd</p>
-    <span>efg</span>
-    <span>hij</span>
-    kml
+   <input type="text" />
+   <input type="button" id="btn" />
+   <iframe id="frm"></iframe>
+   <iframe id="Iframe1" src="http://www.baidu.com"></iframe>
+
+   <script type="text/javascript">
+       document.getElementById("btn").onclick = function () {
+           alert(document.activeElement.tagName);
+       }
+       document.getElementById("frm").contentWindow.document.designMode = "On";
+   </script>
 </p>
 </body>
 </html>

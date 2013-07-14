@@ -14,7 +14,7 @@ var Z = 90,
     // 是否启用侧边栏
     globalStorage.getData(STORAGE_ENABLE, function (data) {
         if (data.value != "0") {
-            $(document.body).append("<div class='chrome_ext_slider' id='chromeExtSlider'><div id='chromeExtCount'></div><input type='button' value='撤消' class='chrome_ext_save_prev'/><input type='button' value='复制' class='copy'/><input type='button' value='清除' class='chrome_ext_redo'/></div>");
+            $(document.body).append("<div class='chrome_ext_slider' id='chromeExtSlider'><div id='chromeExtCount'></div><input type='button' value='撤消' class='chrome_ext_save_prev'/><input type='button' value='清除' class='chrome_ext_redo'/></div>");
 
             document.getElementById("chromeExtSlider").ondragover = function (event) {
                 event.preventDefault();
@@ -25,7 +25,7 @@ var Z = 90,
 
                 saveSelection(data);
                 event.preventDefault();
-            };            
+            };
 
             globalStorage.getData(STORAGE_COUNT, function (data) {
                 var count = !data.value ? 0 : parseInt(data.value);
@@ -76,8 +76,31 @@ function addImgTag() {
 $(document).keypress(function (e) {
     if (e.shiftKey && e.which == A) {
         saveSelection();
-    } 
+    }
 })
+
+$("iframe", document).each(function(){
+    $(this.contentWindow.document).keypress(function(e){
+        if(e.shiftKey && e.which == Z) {
+            var active = document.activeElement;
+            var doc = this;
+
+            globalStorage.copy(STORAGE_KEY, function (backData) {
+                if (active.tagName != "IFRAME") {
+                    showExMsg("请选择目标！");
+                    return;
+                }
+
+                emptyData();
+                setCount(0);
+                globalStorage.setData(STORAGE_COUNT, 0);
+                $("#chromeExtContainer").fadeOut().remove();
+                doc.body.innerHTML = backData.value;
+                showExMsg("写入成功！");
+            });
+        }
+    });
+});
 
 function saveSelection(text) {
     globalStorage.getData(STORAGE_KEY, function (data) {
@@ -108,11 +131,11 @@ function wrapText(text) {
     return "<p class='ext_content'>" + text + "</p>";
 }
 
-function emptyData(){
-	globalStorage.remove(STORAGE_KEY);
+function emptyData() {
+    globalStorage.remove(STORAGE_KEY);
 }
 
-function showSavedData(){
+function showSavedData() {
     globalStorage.getData(STORAGE_KEY, function (data) {
         var backHtml = data.value;
         var doc = $(document.body);
@@ -122,10 +145,10 @@ function showSavedData(){
             return;
         }
 
-        var html = "<div id='chromeExtContainer'><div class='st_all_data'><div class='header'>您的博文<span class='chrome_ext_option'><label><input type='checkbox' id='chromeExtShowSlider'/>是否启用左边栏</label></span></div>";
+        var html = "<div id='chromeExtContainer'><div class='st_all_data'><div class='chro_ext_header'>您的博文<span class='chrome_ext_option'><label><input type='checkbox' id='chromeExtShowSlider'/>是否启用左边栏</label></span></div>";
         html += "<textarea id='chromeExtData' class='hide'>" + backHtml + "</textarea>";
         html += "<iframe id='chromeExtPreviewFrame'/>";
-        html += "<div class='buttons'><input type='button' value='撤消' class='chrome_ext_save_prev'/><input type='button' value='复制' class='copy'/><input type='button' value='清除' class='chrome_ext_redo'/><input type='button' value='关闭' class='close' /></div>";
+        html += "<div class='buttons'><input type='button' value='撤消' class='chrome_ext_save_prev'/><input type='button' value='复制' class='chro_ext_copy'/><input type='button' value='清除' class='chrome_ext_redo'/><input type='button' value='关闭' class='chro_ext_close' /></div>";
         html += "</div></div>";
 
         doc.append(html);
@@ -141,7 +164,7 @@ function showSavedData(){
     });
 }
 
-$(document).on("click", "#chromeExtShowSlider", function() {
+$(document).on("click", "#chromeExtShowSlider", function () {
     if (this.checked) {
         globalStorage.setData(STORAGE_ENABLE, 1);
     }
@@ -150,11 +173,13 @@ $(document).on("click", "#chromeExtShowSlider", function() {
     }
 });
 
-$(document).on("click", ".st_all_data .close", function () {
+// 关闭
+$(document).on("click", ".st_all_data .chro_ext_close", function () {
     $("#chromeExtContainer").fadeOut().remove();
 })
 
-$(document).on("click", ".st_all_data .copy,.chrome_ext_slider .copy", function () {
+// 复制
+$(document).on("click", ".st_all_data .chro_ext_copy,.chrome_ext_slider .chro_ext_copy", function () {
     globalStorage.copy(STORAGE_KEY, function (backData) {
         emptyData();
         setCount(0);
@@ -164,6 +189,7 @@ $(document).on("click", ".st_all_data .copy,.chrome_ext_slider .copy", function 
     });
 })
 
+// 清除
 $(document).on("click", ".st_all_data .chrome_ext_redo, .chrome_ext_slider .chrome_ext_redo", function () {
     emptyData();
     globalStorage.setData(STORAGE_COUNT, 0);
@@ -172,6 +198,7 @@ $(document).on("click", ".st_all_data .chrome_ext_redo, .chrome_ext_slider .chro
     showExMsg("清除成功！");
 })
 
+// 撤消
 $(document).on("click", ".st_all_data .chrome_ext_save_prev,.chrome_ext_slider .chrome_ext_save_prev", function () {
     globalStorage.getData(STORAGE_KEY, function (data) {
         var container = $("<div id='chromeExtTemp' style='display:none;'></div>");
@@ -182,10 +209,10 @@ $(document).on("click", ".st_all_data .chrome_ext_save_prev,.chrome_ext_slider .
         if ($(".ext_content", container).length == 1) {
             $(".ext_content:first", container).remove();
         }
-        else if ($(".ext_content", container).length > 1){
+        else if ($(".ext_content", container).length > 1) {
             $(".ext_content:last", container).remove();
         }
-        else{
+        else {
             showExMsg("没有数据！");
             return;
         }
